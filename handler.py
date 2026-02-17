@@ -55,7 +55,7 @@ COMFY_INPUT_DIR  = Path(os.getenv("COMFY_INPUT_PATH",  "/comfyui/input"))
 
 POLL_INTERVAL = 1.0   # seconds between /history polls
 POLL_TIMEOUT  = 600   # seconds before giving up (10 min)
-STARTUP_WAIT  = 90    # seconds to wait for ComfyUI on cold start
+STARTUP_WAIT  = 180    # seconds to wait for ComfyUI on cold start
 
 
 # ── ComfyUI helpers ────────────────────────────────────────────────────────────
