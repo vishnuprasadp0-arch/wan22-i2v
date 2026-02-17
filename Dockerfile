@@ -1,6 +1,8 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.5.1-base
 
+RUN apt-get update && apt-get install -y git
+
 # install custom nodes into comfyui (first node with --mode remote to fetch updated cache)
 RUN comfy node install --exit-on-fail comfyui_essentials --mode remote
 
