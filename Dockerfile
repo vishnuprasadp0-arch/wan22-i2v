@@ -11,7 +11,7 @@ RUN git --version
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
     git clone https://github.com/rgthree/rgthree-comfy.git && \
-    git clone https://github.com/Wan-Video/ComfyUI-WanVideo.git
+    git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 
 
 # The following custom nodes are listed under unknown_registry but have no aux_id (GitHub repo) provided,
