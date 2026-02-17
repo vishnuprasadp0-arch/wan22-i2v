@@ -4,6 +4,12 @@ FROM runpod/worker-comfyui:5.5.1-base
 # install custom nodes into comfyui (first node with --mode remote to fetch updated cache)
 RUN comfy node install --exit-on-fail comfyui_essentials --mode remote
 
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
+    git clone https://github.com/rgthree/rgthree-comfy.git && \
+    git clone https://github.com/Wan-Video/ComfyUI-WanVideo.git
+
+
 # The following custom nodes are listed under unknown_registry but have no aux_id (GitHub repo) provided,
 # so they cannot be installed automatically. Keep them here as comments for manual resolution:
 # Could not resolve unknown_registry node type: ModelSamplingSD3 (no aux_id provided)
@@ -18,6 +24,11 @@ RUN comfy node install --exit-on-fail comfyui_essentials --mode remote
 # Could not resolve unknown_registry node type: VHS_VideoCombine (no aux_id provided)
 # Could not resolve unknown_registry node type: INTConstant (no aux_id provided)
 # Could not resolve unknown_registry node type: VAEDecodeTiled (no aux_id provided)
+
+COPY handler.py /handler.py
+WORKDIR /
+CMD ["python", "-u", "handler.py"]
+EXPOSE 8188
 
 # download models into comfyui
 RUN comfy model download --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan2.2_vae.safetensors --relative-path models/vae --filename wan2.2_vae.safetensors
